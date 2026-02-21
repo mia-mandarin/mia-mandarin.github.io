@@ -1,24 +1,271 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Mia's Toolbox</title>
-    </head>
 
-    <body>
-        <h1>Welcome to Mia's Toolbox</h1>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mia's Mandarin Toolbox</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=ZCOOL+KuaiLe&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2d5a27;
+            --primary-light: #e8f5e9;
+            --secondary: #2c3e50;
+            --accent: #f39c12;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --radius: 16px;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-hover: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
 
-        <ol>
-            <li><a href="https://medium.com/@mia.mandarin">Mia Mandarin - Blog</a></li>
-            <li><a href="https://www.youtube.com/@mia.mandarin/shorts">Mia Mandarin - YouTube</a></li>
-            <li><a href="https://preply.in/MINGXIA6EN2339518010?ts=17706025&source=user_about----------------------8b0480b4177b----------------------">Learn Mandarin with Mia - Preply</a></li>
-            <li><a href="pinyin/index.html">Pinyin Toolbox</a></li>
-            <li><a href="homework/index.html">Homework Helper</a></li>
-            <li><a href="prep/index.html">Lesson Prep</a></li>
-        </ol>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-        <script data-goatcounter="https://mia-mandarin.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script>
-    </body>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg);
+            background-image:
+                radial-gradient(at 0% 0%, hsla(125, 39%, 95%, 1) 0, transparent 50%),
+                radial-gradient(at 50% 0%, hsla(200, 39%, 95%, 1) 0, transparent 50%);
+            color: var(--text-main);
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            font-family: 'ZCOOL+KuaiLe', cursive;
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .section-title {
+            font-size: 0.875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            padding-left: 0.5rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: var(--shadow);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--primary-light);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--primary);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .card-title {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--secondary);
+        }
+
+        .card-desc {
+            font-size: 0.925rem;
+            color: var(--text-muted);
+        }
+
+        .grid-sub {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .social-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            transition: background 0.2s;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .social-item:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        .social-icon {
+            font-size: 1.25rem;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 4rem 0 2rem;
+            text-align: center;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.25rem;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Mia's Mandarin Toolbox</h1>
+            <p class="subtitle">Premium tools for learning and teaching Mandarin Chinese</p>
+        </header>
+
+        <div class="section-title">Resources & Community</div>
+        <div class="grid-sub">
+            <div class="social-links">
+                <a href="https://medium.com/@mia.mandarin" class="social-item">
+                    <span class="social-icon">✍️</span>
+                    <span>Mia Mandarin - Blog</span>
+                </a>
+                <a href="https://www.youtube.com/@mia.mandarin/shorts" class="social-item">
+                    <span class="social-icon">📺</span>
+                    <span>YouTube Shorts (@mia.mandarin)</span>
+                </a>
+            </div>
+            <div class="social-links">
+                <a href="https://preply.in/MINGXIA6EN2339518010?ts=17706025&source=user_about----------------------8b0480b4177b----------------------"
+                    class="social-item">
+                    <span class="social-icon">👩‍🏫</span>
+                    <span>Book Lesson on Preply</span>
+                </a>
+                <a href="https://www.italki.com/zh-cn/teacher/27377918/chinese?lv=1" class="social-item">
+                    <span class="social-icon">🇨🇳</span>
+                    <span>Book Lesson on italki</span>
+                </a>
+            </div>
+        </div>
+
+
+        <div class="section-title">Essential Tools</div>
+        <div class="grid">
+            <a href="pinyin/index.html" class="card">
+                <div class="card-icon">🀄</div>
+                <div class="card-title">Pinyin Toolbox</div>
+                <div class="card-desc">Annotate Chinese text with Pinyin, definitions, and stroke order guides.</div>
+            </a>
+            <a href="homework/index.html" class="card">
+                <div class="card-icon">📝</div>
+                <div class="card-title">Homework Helper</div>
+                <div class="card-desc">Create worksheets, practice sheets, and manage student assignments.</div>
+            </a>
+            <a href="prep/index.html" class="card">
+                <div class="card-icon">🎓</div>
+                <div class="card-title">Lesson Prep</div>
+                <div class="card-desc">Streamline your teaching with automated lesson plan generation and materials.
+                </div>
+            </a>
+        </div>
+
+        <footer>
+            <p>&copy; <span id="current-year"></span> Mia Mandarin. Happy Learning! 🌱</p>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+    <script data-goatcounter="https://mia-mandarin.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+
 </html>
