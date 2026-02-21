@@ -32,10 +32,10 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: var(--bg);
-            background-image:
-                radial-gradient(at 0% 0%, hsla(125, 39%, 95%, 1) 0, transparent 50%),
-                radial-gradient(at 50% 0%, hsla(200, 39%, 95%, 1) 0, transparent 50%);
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            /* Elegant fallback */
+            background: linear-gradient(135deg, #f6ffea 0%, #e0f2fe 50%, #fefce8 100%);
+            /* Vibrant subtle multi-stop gradient */
             color: var(--text-main);
             line-height: 1.5;
             min-height: 100vh;
@@ -43,6 +43,20 @@
             flex-direction: column;
             align-items: center;
             padding: 2rem 1rem;
+            position: relative;
+        }
+
+        /* Optional aesthetic: Add a subtle overlay so the content stays crisp against the gradient */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 100%);
+            z-index: -1;
+            pointer-events: none;
         }
 
         .container {
@@ -140,48 +154,76 @@
             color: var(--text-muted);
         }
 
-        .grid-sub {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
         .social-links {
             display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.25rem;
+            margin-bottom: 3.5rem;
         }
 
         .social-item {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 12px;
+            gap: 0.875rem;
+            padding: 0.875rem 1.5rem;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 9999px;
             text-decoration: none;
             color: var(--text-main);
             font-weight: 600;
-            transition: background 0.2s;
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            font-size: 0.95rem;
+            white-space: nowrap;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
         }
 
         .social-item:hover {
-            background: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            border-color: rgba(255, 255, 255, 0.9);
             color: var(--primary);
+            background: rgba(255, 255, 255, 0.95);
         }
 
         .social-icon {
             font-size: 1.25rem;
-            width: 32px;
-            height: 32px;
+            width: 36px;
+            height: 36px;
+            flex-shrink: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            background: var(--primary-light);
+            border-radius: 50%;
+            color: var(--primary);
+        }
+
+        .social-label {
+            display: flex;
+            flex-direction: column;
+            gap: 0.1rem;
+        }
+
+        .social-label-main {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--secondary);
+            line-height: 1.2;
+        }
+
+        .social-label-sub {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            line-height: 1.2;
+        }
+
+        .social-item:hover .social-label-main {
+            color: var(--primary);
         }
 
         footer {
@@ -212,28 +254,29 @@
         </header>
 
         <div class="section-title">Resources & Community</div>
-        <div class="grid-sub">
-            <div class="social-links">
-                <a href="https://medium.com/@mia.mandarin" class="social-item">
-                    <span class="social-icon">✍️</span>
-                    <span>Mia Mandarin - Blog</span>
-                </a>
-                <a href="https://www.youtube.com/@mia.mandarin/shorts" class="social-item">
-                    <span class="social-icon">📺</span>
-                    <span>YouTube Shorts (@mia.mandarin)</span>
-                </a>
-            </div>
-            <div class="social-links">
-                <a href="https://preply.in/MINGXIA6EN2339518010?ts=17706025&source=user_about----------------------8b0480b4177b----------------------"
-                    class="social-item">
-                    <span class="social-icon">👩‍🏫</span>
-                    <span>Book Lesson on Preply</span>
-                </a>
-                <a href="https://www.italki.com/zh-cn/teacher/27377918/chinese?lv=1" class="social-item">
-                    <span class="social-icon">🇨🇳</span>
-                    <span>Book Lesson on italki</span>
-                </a>
-            </div>
+        <div class="social-links">
+            <a href="https://medium.com/@mia.mandarin" class="social-item">
+                <span class="social-icon">✍️</span>
+                <span class="social-label">
+                    <span class="social-label-main">Mia's Blog</span>
+                    <span class="social-label-sub">on Medium</span>
+                </span>
+            </a>
+            <a href="https://www.youtube.com/@mia.mandarin/shorts" class="social-item">
+                <span class="social-icon">📺</span>
+                <span class="social-label">
+                    <span class="social-label-main">YouTube Shorts</span>
+                    <span class="social-label-sub">@mia.mandarin</span>
+                </span>
+            </a>
+            <a href="https://preply.in/MINGXIA6EN2339518010?ts=17706025&source=user_about----------------------8b0480b4177b----------------------"
+                class="social-item">
+                <span class="social-icon">👩‍🏫</span>
+                <span class="social-label">
+                    <span class="social-label-main">Learn Mandarin with Me</span>
+                    <span class="social-label-sub">Book a 1-on-1 lesson</span>
+                </span>
+            </a>
         </div>
 
 
@@ -258,13 +301,10 @@
         </div>
 
         <footer>
-            <p>&copy; <span id="current-year"></span> Mia Mandarin. Happy Learning! 🌱</p>
+            <p>&copy; 2026 Mia Mandarin. Happy Learning! 🌱</p>
         </footer>
     </div>
 
-    <script>
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-    </script>
     <script data-goatcounter="https://mia-mandarin.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 
